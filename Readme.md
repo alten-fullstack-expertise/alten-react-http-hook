@@ -2,6 +2,7 @@
 
 This package provides an easy way to manage the state from Promises (with http requests in mind) using a single hook.
 It provides an easy way to cache results in either local, or session storage for increased performance.
+Use the dependency array to trigger a new http/promise request, just like you're used to with useState!
 
 ## Examples
 
@@ -153,6 +154,71 @@ function App() {
     );
 }
 ```
+
+Now let's combine everything we've seen, and add a dependency array for automatic reloads. 
+```tsx
+import React from "react";
+import { useHttpHook } from "alten-react-http-hook";
+
+interface Todo {
+    userId: number;
+    id: number;
+    title:string;
+    completed: boolean;
+}
+
+const isATodo = (obj: any): obj is Todo => {
+    return 'id' in obj && 'message' in obj;
+}
+
+const getTodos = async (): Promise<Todo[]> => {
+    return yourHttpLib.get(`/todos`);
+}
+const getTodoById = async (id: number): Promise<Todo> => {
+    return yourHttpLib.get(`/todos/${id}`);
+}
+
+function App() {
+    
+    const [id, setId] = useState<number>();
+    const todos = useHttpHook<Todo[]>(
+        getTodos,
+        {
+            cache: {
+                // Will cache result.
+                cacheResult: true,
+                // can be found in session or localstorage under this key.
+                cacheKey: "todos",
+                // If the storage is older than the current time + 20000 seconds, the result will be refetched.
+                cacheExpires: 20000,
+                // use local storage istead of session storage so the cache persists through app visits.
+                useLocalStorage: true
+            }
+        });
+    const todo = useHttpHook<Todo>(() => id ? getTodo(id) : {}, {typeCheck: isATodo}, [id]);
+
+    if (loading) return <p>loading...</p>
+    
+    return (
+        <div className="App">
+            { todos.result?.map( todo => {
+                return (
+                    // Every time we click on a todo, we load the todo details beacuse the id has been added to the dependency array.. 
+                    <span key={todo.id} onClick={() => setId(todo.id)}>
+                        {todo.title}
+                    </span>
+                )
+            })}
+
+            {/* Every time we click on t */}
+            <div>
+                {todo?.title}
+            </div>
+        </div>
+    );
+}
+```
+
 
 # Boilerplate for creating React npm packages with Typescript
 
