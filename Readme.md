@@ -23,7 +23,7 @@ function App() {
     
     return (
         <div className="App">
-            { todos.result?.map( todo => <span key={todo.id}>{todo.title}</span>)}
+            { result?.map( todo => <span key={todo.id}>{todo.title}</span>)}
         </div>
     );
 }
@@ -57,7 +57,7 @@ function App() {
     
     return (
         <div className="App">
-            { todos.result?.map( todo => <span key={todo.id}>{todo.title}</span>)}
+            { result?.map( todo => <span key={todo.id}>{todo.title}</span>)}
         </div>
     );
 }
@@ -106,7 +106,7 @@ function App() {
     
     return (
         <div className="App">
-            { todos.result?.map( todo => <span key={todo.id}>{todo.title}</span>)}
+            { result?.map( todo => <span key={todo.id}>{todo.title}</span>)}
         </div>
     );
 }
@@ -149,7 +149,7 @@ function App() {
     
     return (
         <div className="App">
-            { todos.result?.map( todo => <span key={todo.id}>{todo.title}</span>)}
+            { result?.map( todo => <span key={todo.id}>{todo.title}</span>)}
         </div>
     );
 }
@@ -205,8 +205,8 @@ function App() {
             { todos.result?.map( todo => {
                 return (
                     // Every time we click on a todo, we load the todo details beacuse the id has been added to the dependency array.. 
-                    <span key={todo.id} onClick={() => setId(todo.id)}>
-                        {todo.title}
+                    <span key={todo.result?.id} onClick={() => setId(todo.id)}>
+                        {todo.result?.title}
                     </span>
                 )
             })}
