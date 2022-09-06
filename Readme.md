@@ -180,7 +180,7 @@ const getTodoById = async (id: number): Promise<Todo> => {
 
 function App() {
     
-    const [id, setId] = useState<number>();
+    const [id, setId] = useState<number>(1);
     const todos = useHttpHook<Todo[]>(
         getTodos,
         {
@@ -195,7 +195,8 @@ function App() {
                 useLocalStorage: true
             }
         });
-    const todo = useHttpHook<Todo>(() => id ? getTodo(id) : {}, {typeCheck: isATodo}, [id]);
+    // We add the id property to the dependency array, so that every time it changes we fetch the selected todo. 
+    const todo = useHttpHook<Todo>(() => getTodo(id), {typeCheck: isATodo}, [id]);
 
     if (loading) return <p>loading...</p>
     
