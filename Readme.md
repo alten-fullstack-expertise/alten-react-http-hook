@@ -213,7 +213,7 @@ function App() {
 
             {/* Every time we click on t */}
             <div>
-                {todo?.title}
+                {todo.result?.title}
             </div>
         </div>
     );
