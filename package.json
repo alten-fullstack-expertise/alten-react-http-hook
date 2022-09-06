@@ -1,0 +1,34 @@
+{
+  "name": "alten-react-typescript-npm-template",
+  "version": "0.0.1",
+  "description": "A template for creating npm react package with Typescript. Packages are build to work on both server side and client side.",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/esm/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "setup": "cd example && npm install && cd .. && npm install",
+    "ts-dev": "tsc -w",
+    "react-dev": "cd example && npm start",
+    "build": "npm run build:esm && npm run build:cjs",
+    "build:esm": "tsc",
+    "build:cjs": "tsc --module commonjs --outDir lib/cjs"
+  },
+  "dependencies": {
+    "typescript-react-test": "file:./"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.8",
+    "@types/react-dom": "^18.0.3",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "typescript": "^4.6.4"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0"
+  },
+  "files": [
+    "/lib"
+  ]
+}
