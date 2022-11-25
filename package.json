@@ -1,7 +1,7 @@
 {
-  "name": "alten-react-typescript-npm-template",
-  "version": "0.0.1",
-  "description": "A template for creating npm react package with Typescript. Packages are build to work on both server side and client side.",
+  "name": "alten-react-http-hook",
+  "version": "0.0.4",
+  "description": "A package for executing async functions (with http requests in mind) while providing functionality for caching and type checks.",
   "main": "./lib/cjs/index.js",
   "module": "./lib/esm/index.js",
   "types": "./lib/esm/index.d.ts",
@@ -14,9 +14,7 @@
     "build:esm": "tsc",
     "build:cjs": "tsc --module commonjs --outDir lib/cjs"
   },
-  "dependencies": {
-    "typescript-react-test": "file:./"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/react": "^18.0.8",
     "@types/react-dom": "^18.0.3",
@@ -25,8 +23,12 @@
     "typescript": "^4.6.4"
   },
   "peerDependencies": {
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0"
+    "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+    "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alten-fullstack-expertise/alten-react-http-hook"
   },
   "files": [
     "/lib"
